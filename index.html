@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JamFlow | Your Live Music Journey</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #10131c;
+      color: #f5f3ed;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    header {
+      text-align: center;
+      padding: 30px 16px 18px;
+      background: linear-gradient(145deg, #202b46, #10131c);
+    }
+    .logo { font-size: 34px; font-weight: 800; }
+    .logo span { color: #6ee7b7; }
+    .tagline { color: #c4c9d5; margin-top: 8px; }
+    main { max-width: 560px; margin: auto; padding: 20px; }
+    .card {
+      background: #1b202d;
+      border: 1px solid #343c4d;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    h2 { margin-top: 0; font-size: 21px; }
+    label { display: block; margin: 17px 0 8px; color: #d7dce7; }
+    select, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    select {
+      background: #101521;
+      color: white;
+      border: 1px solid #495267;
+    }
+    button {
+      border: 0;
+      background: #6ee7b7;
+      color: #10251e;
+      font-weight: 750;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button.secondary {
+      background: #30394b;
+      color: white;
+      margin-top: 10px;
+    }
+    .stage {
+      padding: 13px;
+      margin-top: 10px;
+      background: #252d3c;
+      border-radius: 10px;
+      border-left: 4px solid #6ee7b7;
+    }
+    .stage strong { display: block; margin-bottom: 5px; }
+    .muted { color: #b8c0cf; line-height: 1.5; }
+    footer { text-align: center; padding: 25px; color: #9099aa; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Jam<span>Flow</span> ♪</div>
+    <div class="tagline">Your music. Your journey. Every jam is different.</div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Build My Jam</h2>
+      <p class="muted">Create a personalized journey through the world of live improvisational music.</p>
+
+      <label for="band">Choose your band</label>
+      <select id="band">
+        <option>Grateful Dead</option>
+        <option>Phish</option>
+        <option>Both bands</option>
+      </select>
+
+      <label for="era">Choose an era</label>
+      <select id="era">
+        <option>Surprise me</option>
+        <option>1960s–1970s</option>
+        <option>1980s</option>
+        <option>1990s</option>
+        <option>2000s and later</option>
+      </select>
+
+      <label for="length">Session length</label>
+      <select id="length">
+        <option value="30">30 minutes</option>
+        <option value="60" selected>60 minutes</option>
+        <option value="90">90 minutes</option>
+        <option value="120">120 minutes</option>
+        <option value="180">180 minutes</option>
+      </select>
+
+      <label for="mood">Musical journey</label>
+      <select id="mood">
+        <option>Balanced exploration</option>
+        <option>Relaxed and spacious</option>
+        <option>Deep, exploratory jams</option>
+        <option>Intense and psychedelic</option>
+        <option>High-energy peaks</option>
+        <option>Melodic and emotional</option>
+      </select>
+
+      <label for="vocals">Vocals</label>
+      <select id="vocals">
+        <option>Mix of vocals and instrumentals</option>
+        <option>Mostly instrumental</option>
+        <option>Mostly vocal performances</option>
+      </select>
+
+      <label for="discovery">Discovery level</label>
+      <select id="discovery">
+        <option>Balanced: favorites and discoveries</option>
+        <option>Familiar favorites</option>
+        <option>Discover unusual performances</option>
+      </select>
+
+      <button onclick="buildJam()">Build My Jam</button>
+    </section>
+
+    <section class="card" id="results" hidden>
+      <h2>Your JamFlow Session</h2>
+      <p id="summary" class="muted"></p>
+      <div class="stage">
+        <strong>01 · Opening</strong>
+        Settle into the groove and establish the musical atmosphere.
+      </div>
+      <div class="stage">
+        <strong>02 · Build</strong>
+        Explore developing themes, rhythmic shifts, and improvisation.
+      </div>
+      <div class="stage">
+        <strong>03 · Peak</strong>
+        Move toward the session's most intense or adventurous moments.
+      </div>
+      <div class="stage">
+        <strong>04 · Cooldown</strong>
+        Return to melodic passages and bring the journey to a close.
+      </div>
+      <p class="muted" id="explanation"></p>
+      <button onclick="buildJam()">More Like This</button>
+      <button class="secondary" onclick="changeDirection()">Change Direction</button>
+      <button class="secondary" onclick="exploreMore()">Explore More</button>
+    </section>
+
+    <footer>Made for the love of live music.</footer>
+  </main>
+
+  <script>
+    function buildJam() {
+      const band = document.getElementById("band").value;
+      const era = document.getElementById("era").value;
+      const length = document.getElementById("length").value;
+      const mood = document.getElementById("mood").value;
+      const vocals = document.getElementById("vocals").value;
+      const discovery = document.getElementById("discovery").value;
+
+      document.getElementById("summary").textContent =
+        band + " · " + era + " · " + length + " minutes";
+
+      document.getElementById("explanation").textContent =
+        "Your direction: " + mood + ". " + vocals +
+        ". Discovery: " + discovery +
+        ". JamFlow will aim to shape a journey that develops naturally from opening grooves to musical peaks and a satisfying cooldown.";
+
+      document.getElementById("results").hidden = false;
+      document.getElementById("results").scrollIntoView({
+        behavior: "smooth", block: "start"
+      });
+    }
+
+    function changeDirection() {
+      const moods = document.getElementById("mood");
+      moods.selectedIndex = (moods.selectedIndex + 1) % moods.options.length;
+      buildJam();
+    }
+
+    function exploreMore() {
+      const discovery = document.getElementById("discovery");
+      discovery.selectedIndex =
+        (discovery.selectedIndex + 1) % discovery.options.length;
+      buildJam();
+    }
+  </script>
+</body>
+</html>
