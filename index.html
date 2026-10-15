@@ -308,7 +308,7 @@ function chooseTracks(s){
 
   const count=Math.max(4,Math.min(12,Math.round(s.duration/12)));
   const picked=[];
-  const used=new Set(s.repeat==="session"?previous:[]);
+  const used=new Set();
 
   function score(t,stage){
     let n=Math.random()*3;
@@ -316,7 +316,7 @@ function chooseTracks(s){
     if(s.discovery==="familiar"&&["Bertha","Tweezer","Eyes of the World","Ghost"].some(x=>t.name.includes(x)))n+=2;
     if(s.discovery==="adventurous"&&["Dark Star","Bird Song","Reba","Carini","Sand"].some(x=>t.name.includes(x)))n+=5;
     if(stage==="Peak"&&["spacey","dark","energetic"].includes(t.mood))n+=s.intensity/2;
-    if(stage==="Cooldown"&&["melodic","bluesy"].includes(t.mood))n+=3;
+    if(stage==="Cooldown"){if(["melodic","bluesy"].includes(t.mood))n+=6;if(["spacy","dark","energetic"].includes(t.mood))n-=4;}
     if(s.artist==="both"&&picked.length&&picked[picked.length-1].band!==t.band)n+=1.5;
     if(t.vocal&&s.vocals==="vocal")n+=2;
     if(!t.vocal&&s.vocals==="instrumental")n+=2;
