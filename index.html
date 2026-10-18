@@ -306,7 +306,12 @@ function chooseTracks(s){
   let pool=candidates(s);
   if(!pool.length) pool=candidates({...s,era:"any",vocals:"mix"});
 
-  const count=Math.max(4,Math.min(12,Math.round(s.duration/12)));
+  // Short jams mean more transitions; epic jams allow longer performances.
+const minutesPerSelection = s.jam===1 ? 9 : s.jam===2 ? 12 : 16;
+const count = Math.max(
+  4,
+  Math.min(12, Math.round(s.duration / minutesPerSelection))
+);
   const picked=[];
   const used=new Set();
 
