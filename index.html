@@ -407,8 +407,12 @@ function render(){
     $("tracks").append(el);
   });
 
-  $("sessionNote").textContent=
-    "Planning estimate only. These are illustrative song selections, not verified recordings or measured live-track durations. Real audio, exact show dates, and licensed playback are future development steps.";
+   $("sessionNote").textContent=
+    (eraFallbackUsed
+      ? "Note: No matches were found for that exact era/vocal combination, so the selection was broadened. "
+      : "") +
+    "Planning estimate only. These are illustrative selections, not verified recordings or measured live-track durations. Jam length influences the number of selections; actual track durations, specific show dates, and licensed playback remain future development steps."; 
+    
 
   $("results").classList.remove("hidden");
   $("results").scrollIntoView({behavior:"smooth",block:"start"});
