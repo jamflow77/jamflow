@@ -257,7 +257,7 @@ const stages = [
 let previous = [];
 let lastSettings = null;
 let generation = 0;
-
+let eraFallbackUsed = false;
 function syncRanges(){
   $("durationValue").textContent=$("duration").value+" min";
   $("intensityValue").textContent=$("intensity").value+"/10";
