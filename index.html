@@ -304,7 +304,12 @@ function candidates(s){
 
 function chooseTracks(s){
   let pool=candidates(s);
-  if(!pool.length) pool=candidates({...s,era:"any",vocals:"mix"});
+  eraFallbackUsed = false;
+  if(!pool.length){
+    eraFallbackUsed = true;
+    pool=candidates({...s,era:"any",vocals:"mix"});
+  }  
+  
 
   // Short jams mean more transitions; epic jams allow longer performances.
 const minutesPerSelection = s.jam===1 ? 9 : s.jam===2 ? 12 : 16;
