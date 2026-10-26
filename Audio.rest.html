@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JamFlow Audio Test</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #10251e;
+      color: #f5f0df;
+      font-family: Arial, sans-serif;
+    }
+    h1 { color: #d9b65d; }
+    p { line-height: 1.5; }
+    button, input {
+      margin: 10px 0;
+      max-width: 100%;
+    }
+    .track {
+      background: #1c382d;
+      border: 1px solid #49634c;
+      border-radius: 10px;
+      padding: 14px;
+      margin: 14px 0;
+      overflow-wrap: anywhere;
+    }
+    audio { width: 100%; margin-top: 10px; }
+    #status { color: #d9b65d; }
+  </style>
+</head>
+<body>
+  <h1>JamFlow Audio Lab</h1>
+  <p>Test your own live concert recordings here. Choose MP3 tracks from your iPhone's Files app. Your recordings are not uploaded by this page.</p>
+
+  <label for="files">Choose concert audio files:</label><br>
+  <input id="files" type="file" accept="audio/*,.mp3,.m4a,.wav" multiple>
+
+  <p id="status">No tracks selected yet.</p>
+  <div id="tracks"></div>
+
+  <script>
+    const picker = document.getElementById("files");
+    const tracks = document.getElementById("tracks");
+    const status = document.getElementById("status");
+    let audioUrls = [];
+
+    picker.addEventListener("change", () => {
+      audioUrls.forEach(url => URL.revokeObjectURL(url));
+      audioUrls = [];
+      tracks.replaceChildren();
+
+      const files = Array.from(picker.files || []);
+      if (!files.length) {
+        status.textContent = "No tracks selected yet.";
+        return;
+      }
+
+      status.textContent = files.length + " track(s) ready to test.";
+
+      files.forEach((file, index) => {
+        const url = URL.createObjectURL(file);
+        audioUrls.push(url);
+
+        const card = document.createElement("section");
+        card.className = "track";
+
+        const title = document.createElement("strong");
+        title.textContent = (index + 1) + ". " + file.name;
+
+        const player = document.createElement("audio");
+        player.controls = true;
+        player.preload = "metadata";
+        player.src = url;
+
+        card.append(title, player);
+        tracks.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
