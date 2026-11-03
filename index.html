@@ -80,6 +80,20 @@ button.primary{width:100%;padding:15px;font-size:17px}
   border:1px solid var(--line);border-radius:20px;padding:3px 8px;
   margin-top:7px
 }
+.audio-panel{
+  margin:18px 0;padding:15px;border:1px solid var(--line);
+  border-radius:12px;background:#111a14
+}
+.audio-panel p{color:var(--muted);font-size:13px;margin:6px 0 12px}
+.audio-panel input[type=file]{
+  display:block;width:100%;margin:10px 0;color:var(--muted);font-size:14px
+}
+#audioPlaylist{list-style:none;padding:0;margin:12px 0 0}
+#audioPlaylist li{
+  padding:9px 0;border-top:1px solid var(--line);font-size:14px
+}
+#audioPlaylist button{margin-left:8px;padding:7px 10px;font-size:13px}
+#audioPlayer{width:100%;margin-top:12px}
 footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
 .hidden{display:none}
 @media(min-width:560px){
@@ -127,8 +141,7 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
           <label for="duration">Session length</label>
           <span class="value" id="durationValue">60 min</span>
         </div>
-        <input id="duration" type="range" min="30" max="180"
-          step="15" value="60">
+        <input id="duration" type="range" min="30" max="180" step="15" value="60">
       </div>
       <div class="field">
         <div class="range-line">
@@ -195,6 +208,17 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
     <p class="intro" id="sessionDescription"></p>
     <div class="summary" id="sessionSummary"></div>
     <div id="tracks"></div>
+
+    <section class="audio-panel" aria-label="Local audio player">
+      <h3>Test Your Own Audio</h3>
+      <p>Select audio files stored on your device. Files stay in this browser session; they are not uploaded to JamFlow.</p>
+      <label for="audioFiles">Choose MP3 or other audio files</label>
+      <input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
+      <ul id="audioPlaylist"></ul>
+      <audio id="audioPlayer" controls preload="metadata"></audio>
+      <p id="audioStatus" aria-live="polite">No audio selected yet.</p>
+    </section>
+
     <p class="intro" id="sessionNote"></p>
     <div class="buttons">
       <button class="primary" id="more">More Like This ↻</button>
@@ -211,6 +235,52 @@ footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
 
 <script>
 const $ = id => document.getElementById(id);
+
+const audioFilesInput = $("audioFiles");
+const audioPlaylist = $("audioPlaylist");
+const audioPlayer = $("audioPlayer");
+const audioStatus = $("audioStatus");
+let localAudioUrls = [];
+
+audioFilesInput.addEventListener("change", () => {
+  localAudioUrls.forEach(url => URL.revokeObjectURL(url));
+  localAudioUrls = [];
+  audioPlaylist.innerHTML = "";
+  audioPlayer.pause();
+  audioPlayer.removeAttribute("src");
+  audioPlayer.load();
+
+  const files = Array.from(audioFilesInput.files || []);
+  if (!files.length) {
+    audioStatus.textContent = "No audio selected yet.";
+    return;
+  }
+
+  files.forEach((file, index) => {
+    const url = URL.createObjectURL(file);
+    localAudioUrls.push(url);
+    const item = document.createElement("li");
+    const name = document.createElement("span");
+    name.textContent = file.name;
+    const play = document.createElement("button");
+    play.type = "button";
+    play.textContent = "Play";
+    play.addEventListener("click", () => {
+      audioPlayer.src = url;
+      audioPlayer.play().then(() => {
+        audioStatus.textContent = "Playing: " + file.name;
+      }).catch(() => {
+        audioStatus.textContent = "Tap Play on the audio controls to start this file.";
+      });
+    });
+    item.append(name, play);
+    audioPlaylist.append(item);
+    if (index === 0) {
+      audioPlayer.src = url;
+      audioStatus.textContent = files.length + " audio file(s) ready. Press Play to listen.";
+    }
+  });
+});
 
 const library = {
   dead: [
@@ -258,6 +328,7 @@ let previous = [];
 let lastSettings = null;
 let generation = 0;
 let eraFallbackUsed = false;
+
 function syncRanges(){
   $("durationValue").textContent=$("duration").value+" min";
   $("intensityValue").textContent=$("intensity").value+"/10";
@@ -308,15 +379,13 @@ function chooseTracks(s){
   if(!pool.length){
     eraFallbackUsed = true;
     pool=candidates({...s,era:"any",vocals:"mix"});
-  }  
-  
+  }
 
-  // Short jams mean more transitions; epic jams allow longer performances.
-const minutesPerSelection = s.jam===1 ? 9 : s.jam===2 ? 12 : 16;
-const count = Math.max(
-  4,
-  Math.min(12, Math.round(s.duration / minutesPerSelection))
-);
+  const minutesPerSelection = s.jam===1 ? 9 : s.jam===2 ? 12 : 16;
+  const count = Math.max(
+    4,
+    Math.min(12, Math.round(s.duration / minutesPerSelection))
+  );
   const picked=[];
   const used=new Set();
 
@@ -327,11 +396,10 @@ const count = Math.max(
     if(s.discovery==="adventurous"&&["Dark Star","Bird Song","Reba","Carini","Sand"].some(x=>t.name.includes(x)))n+=5;
     if(stage==="Peak"&&["spacey","dark","energetic"].includes(t.mood))n+=s.intensity/2;
     if(stage==="Cooldown"){
-  // Favor reflective music at the end of the journey.
-  if(["melodic","bluesy"].includes(t.mood))n+=20;
-  if(t.mood==="spacey")n-=8;
-  if(["dark","energetic"].includes(t.mood))n-=20;
-}
+      if(["melodic","bluesy"].includes(t.mood))n+=20;
+      if(t.mood==="spacey")n-=8;
+      if(["dark","energetic"].includes(t.mood))n-=20;
+    }
     if(s.artist==="both"&&picked.length&&picked[picked.length-1].band!==t.band)n+=1.5;
     if(t.vocal&&s.vocals==="vocal")n+=2;
     if(!t.vocal&&s.vocals==="instrumental")n+=2;
@@ -407,12 +475,11 @@ function render(){
     $("tracks").append(el);
   });
 
-   $("sessionNote").textContent=
+  $("sessionNote").textContent=
     (eraFallbackUsed
       ? "Note: No matches were found for that exact era/vocal combination, so the selection was broadened. "
       : "") +
-    "Planning estimate only. These are illustrative selections, not verified recordings or measured live-track durations. Jam length influences the number of selections; actual track durations, specific show dates, and licensed playback remain future development steps."; 
-    
+    "Planning estimate only. These are illustrative selections, not verified recordings or measured live-track durations. Jam length influences the number of selections; actual track durations, specific show dates, and licensed playback remain future development steps.";
 
   $("results").classList.remove("hidden");
   $("results").scrollIntoView({behavior:"smooth",block:"start"});
