@@ -7,501 +7,153 @@
 <meta name="theme-color" content="#101713">
 <title>JamFlow — Your Live Music Journey</title>
 <style>
-:root {
-  color-scheme: dark;
-  --bg:#101713; --panel:#1b2720; --line:#35473a;
-  --text:#f5f5e9; --muted:#b7c4b7; --gold:#e6c477;
-  --green:#b9e5ad;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  line-height:1.5
-}
-header{
-  padding:28px 20px 24px;
-  background:linear-gradient(145deg,#243c2b,#101713 78%);
-  border-bottom:1px solid var(--line)
-}
-.logo{font-size:29px;font-weight:850;letter-spacing:-1px}
-.logo span{color:var(--gold)}
-header p{color:var(--muted);margin:5px 0 0}
-main{max-width:720px;margin:auto;padding:20px 16px 48px}
-h2{font-size:20px;margin:0 0 14px}
-h3{margin:0;font-size:17px}
-.panel{
-  background:var(--panel);border:1px solid var(--line);
-  border-radius:16px;padding:18px;margin-bottom:18px
-}
-.field{margin-bottom:18px}
-.field:last-child{margin-bottom:0}
-label,.label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
-select,input[type=range]{width:100%}
-select{
-  padding:12px;border-radius:9px;border:1px solid var(--line);
-  background:#111a14;color:var(--text);font-size:16px
-}
-input[type=range]{accent-color:var(--gold)}
-.range-line{display:flex;justify-content:space-between;gap:12px}
-.value{color:var(--gold);font-weight:700}
-button{
-  border:1px solid var(--line);border-radius:10px;
-  padding:12px 15px;font-size:15px;font-weight:700;
-  background:#26372a;color:var(--text);cursor:pointer
-}
-button.primary{background:var(--gold);color:#172017;border-color:var(--gold)}
-button:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-.buttons{display:flex;flex-wrap:wrap;gap:9px}
-button.primary{width:100%;padding:15px;font-size:17px}
-.eyebrow{
-  color:var(--gold);font-size:12px;font-weight:800;
-  letter-spacing:1.5px;text-transform:uppercase
-}
-.intro{color:var(--muted);font-size:14px}
-#results{margin-top:24px}
-.summary{
-  border-radius:12px;background:#24372a;padding:15px;margin:14px 0;
-  color:var(--green)
-}
-.track{
-  padding:15px 0;border-bottom:1px solid var(--line)
-}
-.track:last-child{border-bottom:0}
-.track-top{display:flex;gap:12px;align-items:flex-start}
-.number{
-  display:grid;place-items:center;min-width:34px;height:34px;
-  border-radius:50%;background:#344735;color:var(--gold);font-weight:800
-}
-.track p{margin:6px 0;color:var(--muted);font-size:14px}
-.reason{font-size:13px!important;color:var(--green)!important}
-.badge{
-  display:inline-block;color:var(--gold);font-size:11px;
-  border:1px solid var(--line);border-radius:20px;padding:3px 8px;
-  margin-top:7px
-}
-.audio-panel{
-  margin:18px 0;padding:15px;border:1px solid var(--line);
-  border-radius:12px;background:#111a14
-}
-.audio-panel p{color:var(--muted);font-size:13px;margin:6px 0 12px}
-.audio-panel input[type=file]{
-  display:block;width:100%;margin:10px 0;color:var(--muted);font-size:14px
-}
-#audioPlaylist{list-style:none;padding:0;margin:12px 0 0}
-#audioPlaylist li{
-  padding:9px 0;border-top:1px solid var(--line);font-size:14px
-}
-#audioPlaylist button{margin-left:8px;padding:7px 10px;font-size:13px}
-#audioPlayer{width:100%;margin-top:12px}
-footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}
-.hidden{display:none}
-@media(min-width:560px){
-  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-}
+:root{color-scheme:dark;--bg:#101713;--panel:#1b2720;--line:#35473a;--text:#f5f5e9;--muted:#b7c4b7;--gold:#e6c477;--green:#b9e5ad}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
+header{padding:28px 20px 24px;background:linear-gradient(145deg,#243c2b,#101713 78%);border-bottom:1px solid var(--line)}
+.logo{font-size:29px;font-weight:850;letter-spacing:-1px}.logo span{color:var(--gold)}header p{color:var(--muted);margin:5px 0 0}
+main{max-width:720px;margin:auto;padding:20px 16px 48px}h2{font-size:20px;margin:0 0 14px}h3{margin:0;font-size:17px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
+.field{margin-bottom:18px}.field:last-child{margin-bottom:0}label,.label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
+select,input[type=range]{width:100%}select{padding:12px;border-radius:9px;border:1px solid var(--line);background:#111a14;color:var(--text);font-size:16px}
+input[type=range]{accent-color:var(--gold)}.range-line{display:flex;justify-content:space-between;gap:12px}.value{color:var(--gold);font-weight:700}
+button{border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:15px;font-weight:700;background:#26372a;color:var(--text);cursor:pointer}
+button.primary{background:var(--gold);color:#172017;border-color:var(--gold);width:100%;padding:15px;font-size:17px}
+button:focus-visible,select:focus-visible{outline:2px solid var(--green);outline-offset:3px}.buttons{display:flex;flex-wrap:wrap;gap:9px}
+.eyebrow{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
+.intro{color:var(--muted);font-size:14px}.summary{border-radius:12px;background:#24372a;padding:15px;margin:14px 0;color:var(--green)}
+.track{padding:15px 0;border-bottom:1px solid var(--line)}.track:last-child{border-bottom:0}.track-top{display:flex;gap:12px;align-items:flex-start}
+.number{display:grid;place-items:center;min-width:34px;height:34px;border-radius:50%;background:#344735;color:var(--gold);font-weight:800}
+.track p{margin:6px 0;color:var(--muted);font-size:14px}.reason{font-size:13px!important;color:var(--green)!important}
+.badge{display:inline-block;color:var(--gold);font-size:11px;border:1px solid var(--line);border-radius:20px;padding:3px 8px;margin-top:7px}
+#audioPlaylist{list-style:none;padding:0;margin:12px 0 0}#audioPlaylist li{padding:9px 0;border-top:1px solid var(--line);font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+#audioPlaylist button{padding:7px 10px;font-size:13px}#audioPlayer{width:100%;margin-top:12px}.audio-controls{display:flex;gap:9px;margin-top:10px}
+footer{padding:18px 0;color:var(--muted);font-size:12px;text-align:center}.hidden{display:none}
+@media(min-width:560px){.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
 </style>
 </head>
 <body>
-<header>
-  <div class="logo">jam<span>flow</span> ♪</div>
-  <p>Your next live-music journey starts here.</p>
-</header>
-
+<header><div class="logo">jam<span>flow</span> ♪</div><p>Your next live-music journey starts here.</p></header>
 <main>
-  <section class="panel">
-    <div class="eyebrow">Build your experience</div>
-    <h2 style="margin-top:5px">Build My Jam</h2>
-    <p class="intro">Shape a musical journey around your taste.
-      JamFlow will arrange a session with a beginning, a build,
-      a peak, and a landing.</p>
+<section class="panel">
+<div class="eyebrow">Build your experience</div><h2 style="margin-top:5px">Build My Jam</h2>
+<p class="intro">Shape a musical journey around your taste. JamFlow arranges a session with a beginning, a build, a peak, and a landing.</p>
+<div class="field"><label for="artist">Band selection</label><select id="artist"><option value="both">Grateful Dead + Phish</option><option value="dead">Grateful Dead</option><option value="phish">Phish</option></select></div>
+<div class="field"><label for="era">Era</label><select id="era"><option value="any">Explore all eras</option><option value="early">Early years</option><option value="classic">Classic era</option><option value="later">Later years</option><option value="modern">Modern era</option></select></div>
+<div class="two">
+<div class="field"><div class="range-line"><label for="duration">Session length</label><span class="value" id="durationValue">60 min</span></div><input id="duration" type="range" min="30" max="180" step="15" value="60"></div>
+<div class="field"><div class="range-line"><label for="jam">Jam length</label><span class="value" id="jamValue">Long</span></div><input id="jam" type="range" min="1" max="3" value="2"></div>
+</div>
+<div class="field"><label for="mood">Musical direction</label><select id="mood"><option value="journey">A little of everything</option><option value="spacey">Spacey and exploratory</option><option value="bluesy">Bluesy and soulful</option><option value="energetic">Energetic and driving</option><option value="melodic">Melodic and beautiful</option><option value="dark">Dark and intense</option></select></div>
+<div class="field"><div class="range-line"><label for="intensity">Intensity</label><span class="value" id="intensityValue">7/10</span></div><input id="intensity" type="range" min="1" max="10" value="7"></div>
+<div class="two">
+<div class="field"><label for="vocals">Vocals</label><select id="vocals"><option value="mix">Mix of vocals and instrumentals</option><option value="instrumental">Mostly instrumental</option><option value="vocal">More songs with vocals</option></select></div>
+<div class="field"><label for="discovery">Discovery</label><select id="discovery"><option value="balanced">Balanced</option><option value="familiar">Familiar favorites</option><option value="adventurous">Deep cuts and surprises</option></select></div>
+</div>
+<div class="field"><label for="repeat">Repeat preference</label><select id="repeat"><option value="session">Avoid repeats in this session</option><option value="flexible">Allow a repeat if it fits</option></select></div>
+<button class="primary" id="build">Build My Jam ↗</button>
+</section>
 
-    <div class="field">
-      <label for="artist">Band selection</label>
-      <select id="artist">
-        <option value="both">Grateful Dead + Phish</option>
-        <option value="dead">Grateful Dead</option>
-        <option value="phish">Phish</option>
-      </select>
-    </div>
+<section class="panel" aria-label="Local audio player">
+<div class="eyebrow">Audio test</div><h2 style="margin-top:5px">Test Your Own Audio</h2>
+<p class="intro">Choose audio files stored on your device. Files stay in this browser session; they are not uploaded to JamFlow.</p>
+<label for="audioFiles">Choose MP3 or other audio files</label>
+<input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
+<ul id="audioPlaylist"></ul>
+<div class="audio-controls"><button id="audioPrevious" type="button">Previous</button><button id="audioNext" type="button">Next</button></div>
+<audio id="audioPlayer" controls preload="metadata"></audio>
+<p id="audioStatus" class="intro" aria-live="polite">No audio selected yet.</p>
+</section>
 
-    <div class="field">
-      <label for="era">Era</label>
-      <select id="era">
-        <option value="any">Explore all eras</option>
-        <option value="early">Early years</option>
-        <option value="classic">Classic era</option>
-        <option value="later">Later years</option>
-        <option value="modern">Modern era</option>
-      </select>
-    </div>
-
-    <div class="two">
-      <div class="field">
-        <div class="range-line">
-          <label for="duration">Session length</label>
-          <span class="value" id="durationValue">60 min</span>
-        </div>
-        <input id="duration" type="range" min="30" max="180" step="15" value="60">
-      </div>
-      <div class="field">
-        <div class="range-line">
-          <label for="jam">Jam length</label>
-          <span class="value" id="jamValue">Long</span>
-        </div>
-        <input id="jam" type="range" min="1" max="3" value="2">
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="mood">Musical direction</label>
-      <select id="mood">
-        <option value="journey">A little of everything</option>
-        <option value="spacey">Spacey and exploratory</option>
-        <option value="bluesy">Bluesy and soulful</option>
-        <option value="energetic">Energetic and driving</option>
-        <option value="melodic">Melodic and beautiful</option>
-        <option value="dark">Dark and intense</option>
-      </select>
-    </div>
-
-    <div class="field">
-      <div class="range-line">
-        <label for="intensity">Intensity</label>
-        <span class="value" id="intensityValue">7/10</span>
-      </div>
-      <input id="intensity" type="range" min="1" max="10" value="7">
-    </div>
-
-    <div class="two">
-      <div class="field">
-        <label for="vocals">Vocals</label>
-        <select id="vocals">
-          <option value="mix">Mix of vocals and instrumentals</option>
-          <option value="instrumental">Mostly instrumental</option>
-          <option value="vocal">More songs with vocals</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="discovery">Discovery</label>
-        <select id="discovery">
-          <option value="balanced">Balanced</option>
-          <option value="familiar">Familiar favorites</option>
-          <option value="adventurous">Deep cuts and surprises</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="field">
-      <label for="repeat">Repeat preference</label>
-      <select id="repeat">
-        <option value="session">Avoid repeats in this session</option>
-        <option value="flexible">Allow a repeat if it fits</option>
-      </select>
-    </div>
-
-    <button class="primary" id="build">Build My Jam ↗</button>
-  </section>
-
-  <section id="results" class="panel hidden" aria-live="polite">
-    <div class="eyebrow">Your personalized set</div>
-    <h2 id="sessionTitle">Your JamFlow Session</h2>
-    <p class="intro" id="sessionDescription"></p>
-    <div class="summary" id="sessionSummary"></div>
-    <div id="tracks"></div>
-
-    <section class="audio-panel" aria-label="Local audio player">
-      <h3>Test Your Own Audio</h3>
-      <p>Select audio files stored on your device. Files stay in this browser session; they are not uploaded to JamFlow.</p>
-      <label for="audioFiles">Choose MP3 or other audio files</label>
-      <input id="audioFiles" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg" multiple>
-      <ul id="audioPlaylist"></ul>
-      <audio id="audioPlayer" controls preload="metadata"></audio>
-      <p id="audioStatus" aria-live="polite">No audio selected yet.</p>
-    </section>
-
-    <p class="intro" id="sessionNote"></p>
-    <div class="buttons">
-      <button class="primary" id="more">More Like This ↻</button>
-      <button id="change">Change Direction ⇢</button>
-      <button id="explore">Explore More ✦</button>
-    </div>
-  </section>
-
-  <footer>
-    JamFlow prototype · Built for the love of live music
-    <br>Session recommendations are illustrative, not audio playback.
-  </footer>
+<section id="results" class="panel hidden" aria-live="polite">
+<div class="eyebrow">Your personalized set</div><h2 id="sessionTitle">Your JamFlow Session</h2><p class="intro" id="sessionDescription"></p>
+<div class="summary" id="sessionSummary"></div><div id="tracks"></div><p class="intro" id="sessionNote"></p>
+<div class="buttons"><button class="primary" id="more">More Like This ↻</button><button id="change">Change Direction ⇢</button><button id="explore">Explore More ✦</button></div>
+</section>
+<footer>JamFlow prototype · Built for the love of live music<br>Session recommendations are illustrative, not verified recordings.</footer>
 </main>
-
 <script>
-const $ = id => document.getElementById(id);
-
-const audioFilesInput = $("audioFiles");
-const audioPlaylist = $("audioPlaylist");
-const audioPlayer = $("audioPlayer");
-const audioStatus = $("audioStatus");
-let localAudioUrls = [];
-
-audioFilesInput.addEventListener("change", () => {
-  localAudioUrls.forEach(url => URL.revokeObjectURL(url));
-  localAudioUrls = [];
-  audioPlaylist.innerHTML = "";
-  audioPlayer.pause();
-  audioPlayer.removeAttribute("src");
-  audioPlayer.load();
-
-  const files = Array.from(audioFilesInput.files || []);
-  if (!files.length) {
-    audioStatus.textContent = "No audio selected yet.";
-    return;
-  }
-
-  files.forEach((file, index) => {
-    const url = URL.createObjectURL(file);
-    localAudioUrls.push(url);
-    const item = document.createElement("li");
-    const name = document.createElement("span");
-    name.textContent = file.name;
-    const play = document.createElement("button");
-    play.type = "button";
-    play.textContent = "Play";
-    play.addEventListener("click", () => {
-      audioPlayer.src = url;
-      audioPlayer.play().then(() => {
-        audioStatus.textContent = "Playing: " + file.name;
-      }).catch(() => {
-        audioStatus.textContent = "Tap Play on the audio controls to start this file.";
-      });
-    });
-    item.append(name, play);
-    audioPlaylist.append(item);
-    if (index === 0) {
-      audioPlayer.src = url;
-      audioStatus.textContent = files.length + " audio file(s) ready. Press Play to listen.";
-    }
-  });
+const $=id=>document.getElementById(id);
+const audioInput=$("audioFiles"),playlist=$("audioPlaylist"),player=$("audioPlayer"),status=$("audioStatus");
+let files=[],urls=[],current=-1;
+function playTrack(i,auto=true){
+ if(!files.length)return;
+ current=(i+files.length)%files.length;player.src=urls[current];
+ [...playlist.children].forEach((li,n)=>li.style.color=n===current?"var(--gold)":"var(--text)");
+ status.textContent="Ready: "+files[current].name;
+ if(auto)player.play().then(()=>status.textContent="Playing: "+files[current].name).catch(()=>status.textContent="Ready: "+files[current].name+". Press Play on the player.");
+}
+audioInput.addEventListener("change",()=>{
+ player.pause();urls.forEach(URL.revokeObjectURL);urls=[];files=Array.from(audioInput.files||[]);current=-1;playlist.innerHTML="";player.removeAttribute("src");player.load();
+ if(!files.length){status.textContent="No audio selected yet.";return;}
+ files.forEach((file,i)=>{urls.push(URL.createObjectURL(file));const li=document.createElement("li"),name=document.createElement("span"),btn=document.createElement("button");name.textContent=file.name;btn.type="button";btn.textContent="Play";btn.addEventListener("click",()=>playTrack(i));li.append(name,btn);playlist.append(li);});
+ status.textContent=files.length+" audio file(s) ready.";playTrack(0,false);
 });
+$("audioPrevious").addEventListener("click",()=>playTrack(current-1));
+$("audioNext").addEventListener("click",()=>playTrack(current+1));
+player.addEventListener("ended",()=>{if(current<files.length-1)playTrack(current+1);else status.textContent="Playlist finished.";});
 
-const library = {
-  dead: [
-    {name:"Bertha",era:"early",mood:"energetic",vocal:true},
-    {name:"Bird Song",era:"early",mood:"spacey",vocal:true},
-    {name:"China Cat Sunflower → I Know You Rider",era:"classic",mood:"melodic",vocal:true},
-    {name:"Scarlet Begonias → Fire on the Mountain",era:"classic",mood:"journey",vocal:true},
-    {name:"Playing in the Band",era:"classic",mood:"spacey",vocal:true},
-    {name:"Eyes of the World",era:"classic",mood:"melodic",vocal:true},
-    {name:"Help on the Way → Slipknot! → Franklin's Tower",era:"classic",mood:"energetic",vocal:true},
-    {name:"Dark Star",era:"classic",mood:"dark",vocal:false},
-    {name:"Estimated Prophet",era:"later",mood:"dark",vocal:true},
-    {name:"Terrapin Station",era:"later",mood:"melodic",vocal:true},
-    {name:"Space → The Other One",era:"later",mood:"spacey",vocal:false},
-    {name:"So Many Roads",era:"later",mood:"bluesy",vocal:true},
-    {name:"Days Between",era:"later",mood:"melodic",vocal:true},
-    {name:"Deal",era:"early",mood:"bluesy",vocal:true}
-  ],
-  phish: [
-    {name:"You Enjoy Myself",era:"early",mood:"journey",vocal:true},
-    {name:"Reba",era:"early",mood:"melodic",vocal:true},
-    {name:"Tweezer",era:"classic",mood:"spacey",vocal:true},
-    {name:"Bathtub Gin",era:"classic",mood:"energetic",vocal:true},
-    {name:"Down with Disease",era:"classic",mood:"energetic",vocal:true},
-    {name:"Ghost",era:"classic",mood:"dark",vocal:true},
-    {name:"Wolfman's Brother",era:"classic",mood:"bluesy",vocal:true},
-    {name:"Mike's Song → I Am Hydrogen → Weekapaug Groove",era:"classic",mood:"journey",vocal:true},
-    {name:"The Divided Sky",era:"early",mood:"melodic",vocal:false},
-    {name:"Sand",era:"later",mood:"dark",vocal:true},
-    {name:"Carini",era:"later",mood:"dark",vocal:true},
-    {name:"Everything's Right",era:"later",mood:"energetic",vocal:true},
-    {name:"A Life Beyond the Dream",era:"modern",mood:"melodic",vocal:true},
-    {name:"Fuego",era:"modern",mood:"energetic",vocal:true}
-  ]
+const library={
+dead:[
+["Bertha","early","energetic",1],["Bird Song","early","spacey",1],["China Cat Sunflower → I Know You Rider","classic","melodic",1],
+["Scarlet Begonias → Fire on the Mountain","classic","journey",1],["Playing in the Band","classic","spacey",1],["Eyes of the World","classic","melodic",1],
+["Help on the Way → Slipknot! → Franklin's Tower","classic","energetic",1],["Dark Star","classic","dark",0],["Estimated Prophet","later","dark",1],
+["Terrapin Station","later","melodic",1],["Space → The Other One","later","spacey",0],["So Many Roads","later","bluesy",1],["Days Between","later","melodic",1],["Deal","early","bluesy",1]],
+phish:[
+["You Enjoy Myself","early","journey",1],["Reba","early","melodic",1],["Tweezer","classic","spacey",1],["Bathtub Gin","classic","energetic",1],
+["Down with Disease","classic","energetic",1],["Ghost","classic","dark",1],["Wolfman's Brother","classic","bluesy",1],
+["Mike's Song → I Am Hydrogen → Weekapaug Groove","classic","journey",1],["The Divided Sky","early","melodic",0],
+["Sand","later","dark",1],["Carini","later","dark",1],["Everything's Right","later","energetic",1],
+["A Life Beyond the Dream","modern","melodic",1],["Fuego","modern","energetic",1]]
 };
-
-const stages = [
-  {name:"Opening",share:.18,desc:"Settle in with a welcoming entry point."},
-  {name:"Build",share:.27,desc:"Develop the groove and open up the musical conversation."},
-  {name:"Peak",share:.35,desc:"Reach the most intense or adventurous part of the journey."},
-  {name:"Cooldown",share:.20,desc:"Let the energy resolve into a satisfying landing."}
-];
-
-let previous = [];
-let lastSettings = null;
-let generation = 0;
-let eraFallbackUsed = false;
-
-function syncRanges(){
-  $("durationValue").textContent=$("duration").value+" min";
-  $("intensityValue").textContent=$("intensity").value+"/10";
-  $("jamValue").textContent=["","Short","Long","Epic"][$("jam").value];
+const stages=["Opening","Build","Peak","Cooldown"];let generation=0,lastSettings=null;
+function sync(){ $("durationValue").textContent=$("duration").value+" min";$("intensityValue").textContent=$("intensity").value+"/10";$("jamValue").textContent=["","Short","Long","Epic"][$("jam").value];}
+["duration","intensity","jam"].forEach(id=>$(id).addEventListener("input",sync));sync();
+function settings(){return {artist:$("artist").value,era:$("era").value,duration:+$("duration").value,jam:+$("jam").value,mood:$("mood").value,intensity:+$("intensity").value,vocals:$("vocals").value,discovery:$("discovery").value,repeat:$("repeat").value};}
+function build(){
+ const s=settings();lastSettings=s;let pool=[];
+ if(s.artist!=="phish")pool.push(...library.dead.map(t=>({...t,band:"dead"})));
+ if(s.artist!=="dead")pool.push(...library.phish.map(t=>({...t,band:"phish"})));
+ let filtered=pool.filter(t=>(s.era==="any"||t[1]===s.era)&&(s.vocals==="mix"||(s.vocals==="vocal"?t[3]:!t[3])));
+ let fallback=false;if(!filtered.length){filtered=pool;fallback=true;}
+ const count=Math.max(4,Math.min(12,Math.round(s.duration/(s.jam===1?9:s.jam===2?12:16))));
+ const picked=[],used=new Set();
+ for(let i=0;i<count;i++){
+  const stage=stages[Math.min(3,Math.floor(i/count*4))];
+  let choices=filtered.filter(t=>!used.has(t[0]));if(!choices.length)choices=filtered;
+  choices.sort((a,b)=>score(b,stage)-score(a,stage));
+  const t=choices[0];picked.push({...t,stage});if(s.repeat==="session")used.add(t[0]);
+ }
+ function score(t,stage){
+  let n=Math.random()*3;if(s.mood!=="journey"&&t[2]===s.mood)n+=5;
+  if(s.discovery==="familiar"&&["Bertha","Tweezer","Eyes of the World","Ghost"].some(x=>t[0].includes(x)))n+=2;
+  if(s.discovery==="adventurous"&&["Dark Star","Bird Song","Reba","Carini","Sand"].some(x=>t[0].includes(x)))n+=5;
+  if(stage==="Peak"&&["spacey","dark","energetic"].includes(t[2]))n+=s.intensity/2;
+  if(stage==="Cooldown")n+=["melodic","bluesy"].includes(t[2])?20:-(["spacey","dark","energetic"].includes(t[2])?15:0);
+  if(s.artist==="both"&&picked.length&&picked[picked.length-1].band!==t.band)n+=1.5;
+  return n;
+ }
+ generation++;$("sessionTitle").textContent=["Your JamFlow Session","Another Live Journey","A New Musical Adventure"][generation%3];
+ $("sessionDescription").textContent=`${s.duration} minutes · ${s.artist==="both"?"Grateful Dead + Phish":s.artist==="dead"?"Grateful Dead":"Phish"} · ${s.intensity}/10 intensity`;
+ $("sessionSummary").textContent=`Your direction: ${s.mood==="journey"?"a varied musical journey":s.mood}. Jam length: ${["","short","long","epic"][s.jam]}.`;
+ const host=$("tracks");host.innerHTML="";
+ picked.forEach((t,i)=>{
+  const article=document.createElement("article");article.className="track";
+  const top=document.createElement("div");top.className="track-top";
+  const num=document.createElement("div");num.className="number";num.textContent=i+1;
+  const body=document.createElement("div");body.style.minWidth="0";
+  const stage=document.createElement("div");stage.className="eyebrow";stage.textContent=t.stage;
+  const title=document.createElement("h3");title.textContent=t[0];
+  const badge=document.createElement("div");badge.className="badge";badge.textContent=(t.band==="dead"?"Grateful Dead":"Phish")+" · "+t[1]+" era";
+  const why=document.createElement("p");why.className="reason";
+  why.textContent="Why it fits: "+(i===0?"A welcoming starting point for the journey.":t.stage==="Peak"?"Selected to help drive the session toward its peak.":t.stage==="Cooldown"?"A melodic or reflective turn helps the journey settle.":"Adds contrast and develops the musical arc.");
+  body.append(stage,title,badge,why);top.append(num,body);article.append(top);host.append(article);
+ });
+ $("sessionNote").textContent=(fallback?"No exact era/vocal match was found, so the selection was broadened. ":"")+"Planning estimate only. These are illustrative selections, not verified recordings or measured live-track durations. Specific show dates, actual track durations, and licensed playback remain future development steps.";
+ $("results").classList.remove("hidden");$("results").scrollIntoView({behavior:"smooth",block:"start"});
 }
-["duration","intensity","jam"].forEach(id =>
-  $(id).addEventListener("input",syncRanges)
-);
-syncRanges();
-
-function getSettings(){
-  return {
-    artist:$("artist").value,
-    era:$("era").value,
-    duration:Number($("duration").value),
-    jam:Number($("jam").value),
-    mood:$("mood").value,
-    intensity:Number($("intensity").value),
-    vocals:$("vocals").value,
-    discovery:$("discovery").value,
-    repeat:$("repeat").value
-  };
-}
-
-function bandName(b){
-  return b==="dead"?"Grateful Dead":"Phish";
-}
-
-function candidates(s){
-  let pool=[];
-  if(s.artist==="dead"||s.artist==="both") pool.push(...library.dead);
-  if(s.artist==="phish"||s.artist==="both") pool.push(...library.phish);
-
-  return pool.filter(t=>{
-    if(s.era!=="any"&&t.era!==s.era) return false;
-    if(s.vocals==="instrumental"&&t.vocal) return false;
-    if(s.vocals==="vocal"&&!t.vocal) return false;
-    return true;
-  }).map(t=>{
-    const band=library.dead.includes(t)?"dead":"phish";
-    return {...t,band};
-  });
-}
-
-function chooseTracks(s){
-  let pool=candidates(s);
-  eraFallbackUsed = false;
-  if(!pool.length){
-    eraFallbackUsed = true;
-    pool=candidates({...s,era:"any",vocals:"mix"});
-  }
-
-  const minutesPerSelection = s.jam===1 ? 9 : s.jam===2 ? 12 : 16;
-  const count = Math.max(
-    4,
-    Math.min(12, Math.round(s.duration / minutesPerSelection))
-  );
-  const picked=[];
-  const used=new Set();
-
-  function score(t,stage){
-    let n=Math.random()*3;
-    if(s.mood!=="journey"&&t.mood===s.mood)n+=5;
-    if(s.discovery==="familiar"&&["Bertha","Tweezer","Eyes of the World","Ghost"].some(x=>t.name.includes(x)))n+=2;
-    if(s.discovery==="adventurous"&&["Dark Star","Bird Song","Reba","Carini","Sand"].some(x=>t.name.includes(x)))n+=5;
-    if(stage==="Peak"&&["spacey","dark","energetic"].includes(t.mood))n+=s.intensity/2;
-    if(stage==="Cooldown"){
-      if(["melodic","bluesy"].includes(t.mood))n+=20;
-      if(t.mood==="spacey")n-=8;
-      if(["dark","energetic"].includes(t.mood))n-=20;
-    }
-    if(s.artist==="both"&&picked.length&&picked[picked.length-1].band!==t.band)n+=1.5;
-    if(t.vocal&&s.vocals==="vocal")n+=2;
-    if(!t.vocal&&s.vocals==="instrumental")n+=2;
-    return n;
-  }
-
-  for(let i=0;i<count;i++){
-    const stage=stages[Math.min(3,Math.floor(i/count*4))].name;
-    let available=pool.filter(t=>!used.has(t.name));
-    if(!available.length) available=pool.filter(t=>!picked.some(p=>p.name===t.name));
-    if(!available.length) available=pool;
-    available.sort((a,b)=>score(b,stage)-score(a,stage));
-    const choice=available[0];
-    picked.push({...choice,stage});
-    used.add(choice.name);
-  }
-  return picked;
-}
-
-function whyThis(t,i,tracks,s){
-  if(i===0)return "A welcoming starting point for the musical direction you selected.";
-  const prev=tracks[i-1];
-  if(prev.band!==t.band)return "A change of band adds a new improvisational voice while preserving the session's direction.";
-  if(t.stage==="Peak")return "Chosen to push the energy and improvisational intensity toward the session's peak.";
-  if(t.stage==="Cooldown")return "A more melodic or reflective turn helps the journey settle naturally.";
-  if(t.mood===prev.mood)return "Keeps a musical thread going so the journey feels connected.";
-  if(s.mood!=="journey")return "Connects your preferred musical character with a contrasting texture.";
-  return "Adds contrast to the previous performance and develops the session's musical arc.";
-}
-
-function render(){
-  const s=getSettings();
-  lastSettings=s;
-  const tracks=chooseTracks(s);
-  previous=tracks.map(t=>t.name);
-  generation++;
-
-  $("sessionTitle").textContent=
-    ["Your JamFlow Session","Another Live Journey","A New Musical Adventure"][generation%3];
-  $("sessionDescription").textContent=
-    `${s.duration} minutes · ${s.artist==="both"?"Grateful Dead + Phish":bandName(s.artist)} · ${s.intensity}/10 intensity`;
-
-  $("sessionSummary").textContent=
-    `Your direction: ${s.mood==="journey"?"a varied musical journey":s.mood.replace("spacey","spacey and exploratory").replace("bluesy","bluesy and soulful").replace("energetic","energetic and driving").replace("melodic","melodic and beautiful").replace("dark","dark and intense")}. Jam length: ${["","short","long","epic"][s.jam]}.`;
-
-  $("tracks").innerHTML="";
-  tracks.forEach((t,i)=>{
-    const el=document.createElement("article");
-    el.className="track";
-    const mins=Math.round(s.duration/tracks.length);
-    const title=document.createElement("h3");
-    title.textContent=t.name;
-    const meta=document.createElement("div");
-    meta.className="badge";
-    meta.textContent=`${bandName(t.band)} · ${t.era} era · ~${mins} min`;
-    const stage=document.createElement("div");
-    stage.className="eyebrow";
-    stage.style.margin="0 0 5px";
-    stage.textContent=t.stage;
-    const reason=document.createElement("p");
-    reason.className="reason";
-    reason.textContent="Why it fits: "+whyThis(t,i,tracks,s);
-    const top=document.createElement("div");
-    top.className="track-top";
-    const num=document.createElement("div");
-    num.className="number";
-    num.textContent=i+1;
-    const body=document.createElement("div");
-    body.style.minWidth="0";
-    body.append(stage,title,meta,reason);
-    top.append(num,body);
-    el.append(top);
-    $("tracks").append(el);
-  });
-
-  $("sessionNote").textContent=
-    (eraFallbackUsed
-      ? "Note: No matches were found for that exact era/vocal combination, so the selection was broadened. "
-      : "") +
-    "Planning estimate only. These are illustrative selections, not verified recordings or measured live-track durations. Jam length influences the number of selections; actual track durations, specific show dates, and licensed playback remain future development steps.";
-
-  $("results").classList.remove("hidden");
-  $("results").scrollIntoView({behavior:"smooth",block:"start"});
-}
-
-$("build").addEventListener("click",render);
-$("more").addEventListener("click",()=>{
-  if(!lastSettings)return;
-  render();
-});
-$("change").addEventListener("click",()=>{
-  const moods=["spacey","bluesy","energetic","melodic","dark","journey"];
-  const current=$("mood").value;
-  $("mood").value=moods.find(m=>m!==current)||"journey";
-  render();
-});
-$("explore").addEventListener("click",()=>{
-  $("discovery").value="adventurous";
-  $("era").value="any";
-  $("mood").value="spacey";
-  render();
-});
+$("build").addEventListener("click",build);$("more").addEventListener("click",build);
+$("change").addEventListener("click",()=>{const m=["spacey","bluesy","energetic","melodic","dark","journey"],cur=$("mood").value;$("mood").value=m.find(x=>x!==cur);build();});
+$("explore").addEventListener("click",()=>{$("discovery").value="adventurous";$("era").value="any";$("mood").value="spacey";build();});
 </script>
 </body>
 </html>
